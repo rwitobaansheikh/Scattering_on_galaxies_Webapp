@@ -1,0 +1,211 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(249, 243, 236);
+}
+.header{
+    background-color: none;
+    background:url("title.jpg");
+    background-size: cover;
+    height: 120px;
+    color: white;
+    text-align: center;
+    display: block;
+    overflow: hidden;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    box-shadow: 0 1px 4px 0 rgba(255, 255, 255, 0.342), 0 1px 4px 0 rgba(255, 255, 255, 0.342);
+}
+.content{
+    padding: 1%;
+    margin-top: 8%;
+    z-index: 2;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+    position: relative;
+}
+.image-container, .table-container {
+    /* margin: 10px; */
+    border-collapse: collapse;
+}
+.image-container img {
+    max-width: 75%;
+    height: auto;
+    object-fit: contain;
+    clip-path: inset(12% 20% 12% 22%);
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 0.9em;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+
+th, td {
+    padding: 8px;
+    text-align: left;
+}
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+.sdss-container {
+    text-align: center;
+    display: none;
+    position: relative;
+}
+.sdss-container.active {
+    display: block;
+}
+.sdss-container table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 0 auto;
+    font-size: 0.9em;
+}
+
+.scattering-container {
+    margin-top: 20px;
+    text-align: center;
+    position: relative;
+    display: none;
+}
+.scattering-container.active {
+    display: block;
+}
+.scattering-container h2 {
+    margin-bottom: 10px;
+}
+.scattering-container table {
+    margin: 0 auto;
+    width: auto; 
+    font-size: 0.8em; /* Reduce font size */
+    border-collapse: collapse;
+}
+.scattering-container td {
+    padding: 2px; /* Reduce padding to make borders stick closer to the image */
+}
+.scattering-container img{
+    width: 100% !important; /* Resize images to 70% of their original size */
+    height: auto !important;
+    /* display: block; Ensure images are displayed as block elements */
+    /*margin: 0 auto; */
+    object-fit: cover;
+    clip-path: inset(12% 20% 12% 22%);
+}
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background-color: #e0bb00;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    text-decoration: none;
+    margin: 20px auto;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.btn:hover {
+    background-color: #e0bb00;
+}
+.button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+button {
+    background-color: #4CAF50; /* Green background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 15px 32px; /* Some padding */
+    text-align: center; /* Centered text */
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Make the buttons appear side by side */
+    font-size: 16px; /* Increase font size */
+    margin: 4px 2px; /* Some margin */
+    cursor: pointer; /* Pointer/hand icon */
+    border-radius: 12px; /* Rounded corners */
+    transition: background-color 0.3s ease; /* Smooth transition for background color */
+}
+
+/* Hover effect */
+button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+/* Active button styling */
+button:active {
+    background-color: #007bff; /* Even darker green */
+    box-shadow: 0 5px #666; /* Add a shadow */
+    transform: translateY(4px); /* Move the button down a bit */
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.button-group button.active {
+    background-color: #007bff;
+    color: white;
+}
+
+
+
+.main-title {
+    font-size: 2.5em;
+    font-weight: bold;
+    text-align: center;
+    text-shadow: 3px 3px #01060e;
+    margin: 0;
+    padding: 20px 0;
+}
+.sub-title {
+    font-size: 2em;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0 10px 0;
+    padding: 10px 0;
+    background-color: none;
+    background:url("subtitle.jpg");
+    border-bottom: 1px solid #dee2e6;
+    box-shadow: 0 1px 4px 0 rgba(255, 255, 255, 0.342), 0 1px 4px 0 rgba(255, 255, 255, 0.342);
+    color: white;
+    text-shadow: 3px 3px #01060e;
+}
+
+.clickable-row {
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit; /* Inherit text color */
+}
+.clickable-row:hover {
+    background-color: #f1f1f1; /* Optional: Add hover effect */
+}
+.clickable-row td {
+    padding: 10px; /* Optional: Add padding to table cells */
+}

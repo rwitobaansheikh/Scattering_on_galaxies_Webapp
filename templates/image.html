@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SDSS Image and Data for Scattering Index {{ row.Scattering_INDEX }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1 class="main-title">SDSS Image and Data for SDSS Data Index {{ row.Scattering_INDEX }}</h1>
+    </div>
+    <div class="content">
+    <div class="container">
+        <div class="image-container">
+            <img src="data:image/png;base64,{{ image_data }}" alt="Image for Scattering Index {{ row.Scattering_INDEX }}" class="galaxy-image">
+        </div>
+        <div class="table-container">
+            <table border="1">
+            <tr>
+                <th>Field</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>OBJID</td>
+                <td>{{ row['OBJID'] }}</td>
+            </tr>
+            <tr>
+                <td>Stellar Mass Median</td>
+                <td>{{ row['stellar_mass_median'] }}</td>
+            </tr>
+            <tr>
+                <td>Stellar Mass P16</td>
+                <td>{{ row['stellar_mass_p16'] }}</td>
+            </tr>
+            <tr>
+                <td>Stellar Mass P84</td>
+                <td>{{ row['stellar_mass_p84'] }}</td>
+            </tr>
+            <tr>
+                <td>Stellar Mass Mode</td>
+                <td>{{ row['stellar_mass_mode'] }}</td>
+            </tr>
+            <tr>
+                <td>Stellar Mass Mean</td>
+                <td>{{ row['stellar_mass_mean'] }}</td>
+            </tr>
+            <tr>
+                <td>Redshift</td>
+                <td>{{ row['REDSHIFT'] }}</td>
+            </tr>
+            <tr>
+                <td>Spectrotype</td>
+                <td>{{ row['spectrotype'] }}</td>
+            </tr>
+            <tr>
+                <td>Subclass</td>
+                <td>{{ row['SUBCLASS'] }}</td>
+            </tr>
+            <tr>
+                <td>Disturbed Fraction</td>
+                <td>{{ row['Disturbed_Fraction'] }}</td>
+            </tr>
+            <tr>
+                <td>Disturbed Weighted Fraction</td>
+                <td>{{ row['Disturbed_weighted_Fraction'] }}</td>
+            </tr>
+            <tr>
+                <td>Irregular Fraction</td>
+                <td>{{ row['Irregular_Fraction'] }}</td>
+            </tr>
+            <tr>
+                <td>Irregular Weighted Fraction</td>
+                <td>{{ row['Irregular_weighted_fraction'] }}</td>
+            </tr>
+            <tr>
+                <td>Merger Fraction</td>
+                <td>{{ row['Merger_fraction'] }}</td>
+            </tr>
+            <tr>
+                <td>Merger Weighted Fraction</td>
+                <td>{{ row['Merger_weighted_fraction'] }}</td>
+            </tr>
+            <tr>
+                <td>Elliptical</td>
+                <td>{{ row['Elliptical'] }}</td>
+            </tr>
+            <tr>
+                <td>Clockwise Spiral</td>
+                <td>{{ row['Clockwise_Spiral'] }}</td>
+            </tr>
+            <tr>
+                <td>Anticlockwise Spiral</td>
+                <td>{{ row['Anticlockwise_Spiral'] }}</td>
+            </tr>
+            <tr>
+                <td>Edge-on Spiral</td>
+                <td>{{ row['Edge_on_Spiral'] }}</td>
+            </tr>
+            <tr>
+                <td>Merger Percentage</td>
+                <td>{{ row['Merger_percentage'] }}</td>
+            </tr>
+            <tr>
+                <td>Don't Know</td>
+                <td>{{ row['Dont_know'] }}</td>
+            </tr>
+            <tr>
+                <td>Number of Votes</td>
+                <td>{{ row['No_Of_Votes'] }}</td>
+            </tr>
+        </table>
+        </div>
+    </div>
+
+    <div class="button-group">
+        <button id="btnL2Norm">L2 Norm</button>
+        <button id="btnScatteringL2Norm" class="active">Scattering on L2 Norm</button>
+        <button id="btnScatteringL1Norm">Scattering on L1 Norm</button>
+    </div>
+    <div id="tableL2Norm" class="scattering-container">
+        <h2 class="sub-title">Best 5 TNG Objects After applying L2 Norm</h2>
+        <table>
+            <tr>
+                <th>Image</th>
+                {% for image in Best_L2_images %}
+                <td><img src="data:image/png;base64,{{ image.image_data }}" alt="L2 Norm Image"></td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>TNG Data Index</th>
+                {% for image in Best_L2_images %}
+                <td>{{ image.data.Scattering_INDEX }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Redshift</th>
+                {% for image in Best_L2_images %}
+                <td>{{ image.data.redshift }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Ratio Last</th>
+                {% for image in Best_L2_images %}
+                <td>{{ image.data.ratio_last }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>DT Last</th>
+                {% for image in Best_L2_images %}
+                <td>{{ image.data.dt_last }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Ratio Biggest</th>
+                {% for image in Best_L2_images %}
+                <td>{{ image.data.ratio_biggest }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Snap Biggest</th>
+                {% for image in Best_L2_images %}
+                <td>{{ image.data.snap_biggest }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>DT Biggest</th>
+                {% for image in Best_L2_images %}
+                <td>{{ image.data.dt_biggest }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Stellar Mass</th>
+                {% for image in Best_L2_images %}
+                <td>{{ image.data.stellar_mass }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Stellar Half Mass Radius</th>
+                {% for image in Best_L2_images %}
+                <td>{{ image.data.stellar_half_mass_radius }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Stellar Mass Ratio</th>
+                {% for image in Best_L2_images %}
+                <td>{{ image.data.stellar_mass_ratio }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>New Redshift</th>
+                {% for image in Best_L2_images %}
+                <td>{{ image.data.new_redshift }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Merger Classification</th>
+                {% for image in Best_L2_images %}
+                <td>{{ image.data.merger_classification }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+    <div id="tableScatteringL2Norm" class="scattering-container active">
+        <h2 class="sub-title">Best 5 TNG Objects After applying L2 Norm on Scattering Transform</h2>
+        <table>
+            <tr>
+                <th>Image</th>
+                {% for image in Best_sc_L2_images %}
+                <td><img src="data:image/png;base64,{{ image.image_data }}" alt="L2 on Scattering Image"></td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>TNG Data Index</th>
+                {% for image in Best_sc_L2_images %}
+                <td>{{ image.data.Scattering_INDEX }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Redshift</th>
+                {% for image in Best_sc_L2_images %}
+                <td>{{ image.data.redshift }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Ratio Last</th>
+                {% for image in Best_sc_L2_images %}
+                <td>{{ image.data.ratio_last }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>DT Last</th>
+                {% for image in Best_sc_L2_images %}
+                <td>{{ image.data.dt_last }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Ratio Biggest</th>
+                {% for image in Best_sc_L2_images %}
+                <td>{{ image.data.ratio_biggest }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Snap Biggest</th>
+                {% for image in Best_sc_L2_images %}
+                <td>{{ image.data.snap_biggest }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>DT Biggest</th>
+                {% for image in Best_sc_L2_images %}
+                <td>{{ image.data.dt_biggest }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Stellar Mass</th>
+                {% for image in Best_sc_L2_images %}
+                <td>{{ image.data.stellar_mass }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Stellar Half Mass Radius</th>
+                {% for image in Best_sc_L2_images %}
+                <td>{{ image.data.stellar_half_mass_radius }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Stellar Mass Ratio</th>
+                {% for image in Best_sc_L2_images %}
+                <td>{{ image.data.stellar_mass_ratio }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>New Redshift</th>
+                {% for image in Best_sc_L2_images %}
+                <td>{{ image.data.new_redshift }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Merger Classification</th>
+                {% for image in Best_sc_L2_images %}
+                <td>{{ image.data.merger_classification }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+    <div id="tableScatteringL1Norm" class="scattering-container">
+        <h2 class="sub-title">Best 5 TNG Objects After applying L1 Norm on Scattering Transform</h2>
+        <table>
+            <tr>
+                <th>Image</th>
+                {% for image in Best_sc_L1_images %}
+                <td><img src="data:image/png;base64,{{ image.image_data }}" alt="L1 on Scattering Image"></td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>TNG Data Index</th>
+                {% for image in Best_sc_L1_images %}
+                <td>{{ image.data.Scattering_INDEX }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Redshift</th>
+                {% for image in Best_sc_L1_images %}
+                <td>{{ image.data.redshift }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Ratio Last</th>
+                {% for image in Best_sc_L1_images %}
+                <td>{{ image.data.ratio_last }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>DT Last</th>
+                {% for image in Best_sc_L1_images %}
+                <td>{{ image.data.dt_last }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Ratio Biggest</th>
+                {% for image in Best_sc_L1_images %}
+                <td>{{ image.data.ratio_biggest }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Snap Biggest</th>
+                {% for image in Best_sc_L1_images %}
+                <td>{{ image.data.snap_biggest }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>DT Biggest</th>
+                {% for image in Best_sc_L1_images %}
+                <td>{{ image.data.dt_biggest }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Stellar Mass</th>
+                {% for image in Best_sc_L1_images %}
+                <td>{{ image.data.stellar_mass }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Stellar Half Mass Radius</th>
+                {% for image in Best_sc_L1_images %}
+                <td>{{ image.data.stellar_half_mass_radius }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Stellar Mass Ratio</th>
+                {% for image in Best_sc_L1_images %}
+                <td>{{ image.data.stellar_mass_ratio }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>New Redshift</th>
+                {% for image in Best_sc_L1_images %}
+                <td>{{ image.data.new_redshift }}</td>
+                {% endfor %}
+            </tr>
+            <tr>
+                <th>Merger Classification</th>
+                {% for image in Best_sc_L1_images %}
+                <td>{{ image.data.merger_classification }}</td>
+                {% endfor %}
+            </tr>
+        </table>
+    </div>
+    
+    <script>
+        document.getElementById('btnL2Norm').addEventListener('click', function() {
+            setActiveButton('btnL2Norm');
+            setActiveTable('tableL2Norm');
+        });
+
+        document.getElementById('btnScatteringL2Norm').addEventListener('click', function() {
+            setActiveButton('btnScatteringL2Norm');
+            setActiveTable('tableScatteringL2Norm');
+        });
+
+        document.getElementById('btnScatteringL1Norm').addEventListener('click', function() {
+            setActiveButton('btnScatteringL1Norm');
+            setActiveTable('tableScatteringL1Norm');
+        });
+
+        function setActiveButton(buttonId) {
+            var buttons = document.querySelectorAll('.button-group button');
+            buttons.forEach(function(button) {
+                button.classList.remove('active');
+            });
+            document.getElementById(buttonId).classList.add('active');
+        }
+
+        function setActiveTable(tableId) {
+            var tables = document.querySelectorAll('.scattering-container');
+            tables.forEach(function(table) {
+                table.style.display = 'none';
+            });
+            document.getElementById(tableId).style.display = 'block';
+        }
+
+    </script>
+    <div class="button-container">
+        <a href="{{ url_for('index') }}" class="btn">Back to Index</a>
+    </div>
+    </div>
+</body>
+</html>

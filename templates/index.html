@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galaxy Data</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h1 class="main-title">SDSS Image and Data table</h1>
+    </div>
+    <div class="content">
+    <div class="button-group">
+        <button id="All" class="active">All Objects</button>
+        <button id="Disturbed">Disturbed Objects</button>
+    </div>
+    
+    <div id="All_rows" class="sdss-container active">
+    <h2 class="sub-title">All Objects displayed</h2>
+    <table>
+        <tr>
+            <th>SDSS data Index</th>
+            <th>OBJID</th>
+            <th>Redshift</th>
+            <th>Spectrotype</th>
+            <th>Subclass</th>
+            
+        </tr>
+    
+        {% for row in rows_a %}
+        <tr class="clickable-row" data-href="{{ url_for('show_image', scattering_index=row['Scattering_INDEX']) }}">
+            <td>{{ row.Scattering_INDEX }}</td>
+            <td>{{ row.OBJID }}</td>
+            <td>{{ row.REDSHIFT }}</td>
+            <td>{{ row.spectrotype }}</td>
+            <td>{{ row.SUBCLASS }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </div>
+    <div id="Disturbed_rows" class="sdss-container">
+        <h2 class="sub-title">Objects with valid Disturbed Fraction</h2>
+        <table>
+            <tr>
+                <th>SDSS data Index</th>
+                <th>OBJID</th>
+                <th>Redshift</th>
+                <th>Spectrotype</th>
+                <th>Subclass</th>
+                
+            </tr>
+            {% for row in rows_d %}
+            <tr class="clickable-row" data-href="{{ url_for('show_image', scattering_index=row['Scattering_INDEX']) }}">
+                <td>{{ row.Scattering_INDEX }}</td>
+                <td>{{ row.OBJID }}</td>
+                <td>{{ row.Redshift }}</td>
+                <td>{{ row.Spectrotype }}</td>
+                <td>{{ row.Subclass }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    </div>
+    <script>
+        document.getElementById('All').addEventListener('click', function() {
+            setActiveButton('All');
+            setActiveTable('All_rows');
+            
+        });
+        document.getElementById('Disturbed').addEventListener('click', function() {
+            setActiveButton('Disturbed');
+            setActiveTable('Disturbed_rows');
+            
+        });
+
+        function setActiveButton(buttonId) {
+            var buttons = document.querySelectorAll('.button-group button');
+            buttons.forEach(function(button) {
+                button.classList.remove('active');
+            });
+            document.getElementById(buttonId).classList.add('active');
+        }
+
+        function setActiveTable(tableId) {
+            var tables = document.querySelectorAll('.sdss-container');
+            tables.forEach(function(table) {
+                table.style.display = 'none';
+            });
+            document.getElementById(tableId).style.display = 'block';
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+        var rows = document.querySelectorAll('.clickable-row');
+        rows.forEach(function(row) {
+            row.addEventListener('click', function() {
+                window.location.href = row.dataset.href;
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>
